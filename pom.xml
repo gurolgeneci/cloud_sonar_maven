@@ -14,9 +14,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <sonar.organization>ahamedfaya</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <sonar.coverage.jacoco.xmlReportPaths>
-            ../app-it/target/site/jacoco-aggregate/jacoco.xml
-        </sonar.coverage.jacoco.xmlReportPaths>
+        <!-- Remove sonar.coverage.jacoco.xmlReportPaths -->
+
+        <!-- Add SonarQube Maven Plugin -->
+        <sonar.login>your-sonar-token</sonar.login> <!-- Replace with your SonarQube token -->
+
+        <!-- Add JaCoCo Maven Plugin configuration -->
+        <jacoco.version>0.8.11</jacoco.version>
     </properties>
 
     <dependencies>
@@ -24,12 +28,6 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>5.7.0</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jacoco</groupId>
-            <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.8.11</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -41,7 +39,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.11</version>
+                <version>${jacoco.version}</version>
                 <executions>
                     <execution>
                         <goals>
@@ -55,12 +53,19 @@
                             <goal>report</goal>
                         </goals>
                         <configuration>
-                          <formats>
-                            <format>XML</format>
-                          </formats>
+                            <formats>
+                                <format>XML</format>
+                            </formats>
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+
+            <!-- Add SonarQube Maven Plugin -->
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.9.0.2180</version>
             </plugin>
         </plugins>
     </build>
