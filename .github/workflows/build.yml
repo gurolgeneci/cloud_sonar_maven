@@ -1,10 +1,12 @@
 name: SonarCloud
+
 on:
   push:
     branches:
       - master
   pull_request:
     types: [opened, synchronize, reopened]
+
 jobs:
   build:
     name: Build and analyze
@@ -16,7 +18,7 @@ jobs:
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
-          java-version: 21
+          java-version: 17
           distribution: 'zulu' # Alternative distribution options are available.
       - name: Cache SonarCloud packages
         uses: actions/cache@v3
@@ -34,4 +36,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify -Pcoverage org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=ahamedfaya_cloud_sonar_maven
+        run: mvn clean verify -Pcoverage org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=ahamedfaya_cloud_sonar_maven
