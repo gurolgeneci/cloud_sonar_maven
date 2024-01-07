@@ -17,7 +17,7 @@
         <!-- Remove sonar.coverage.jacoco.xmlReportPaths -->
 
         <!-- Add SonarQube Maven Plugin -->
-        <sonar.login>your-sonar-token</sonar.login> <!-- Replace with your SonarQube token -->
+        <sonar.login>SONAR_TOKEN</sonar.login> <!-- Replace with your SonarQube token -->
 
         <!-- Add JaCoCo Maven Plugin configuration -->
         <jacoco.version>0.8.11</jacoco.version>
