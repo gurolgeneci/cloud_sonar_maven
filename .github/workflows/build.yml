@@ -35,6 +35,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          mvn clean verify 
-          mvn -B verify -Pcoverage org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=ahamedfaya_cloud_sonar_maven
-
+          mvn clean verify \
+          mvn -B verify -Pcoverage org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.organization=ahamedfaya \
+          -Dsonar.projectKey=ahamedfaya_cloud_sonar_maven 
