@@ -42,7 +42,7 @@ jobs:
         run: mvn clean verify sonar:sonar --offline
           
       - name: Run Unit Tests
-        run: mvn clean test jacoco:prepare-agent install jacoco:report
+        run: mvn clean test jacoco:report
 
       - name: Run Integration Tests
         run: mvn verify
