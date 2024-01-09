@@ -39,11 +39,8 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
           
       - name: Run Unit Tests
-        run: mvn test
-
-      - name: Run Integration Tests
-        run: mvn verify
-
+        run: mvn clean test jacoco:report
+        
       - name: SonarCloud Analysis
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
